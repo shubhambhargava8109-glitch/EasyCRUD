@@ -2,7 +2,7 @@ pipeline {
     agent any
     stage('Git pull') {
             steps {
-                git branch: 'main', url: 'https://github.com/djain2558-cyber/EasyCRUD.git'
+                git branch: 'main', url: 'https://github.com/shubhambhargava8109-glitch/EasyCRUD.git'
             }
         }
         stage('Build') {
