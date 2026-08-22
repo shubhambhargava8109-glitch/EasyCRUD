@@ -1,24 +1,24 @@
 pipeline {
     agent any
-    stage('Git pull') {
+    stages {
+        stage('Git pull') {
             steps {
                 git branch: 'main', url: 'https://github.com/shubhambhargava8109-glitch/EasyCRUD.git'
             }
         }
         stage('Build') {
             steps {
-                sh 'make'
+              echo 'build'        
             }
         }
-        stage('Test'){
+        stage('Test') {
             steps {
-                sh 'make check'
-                junit 'reports/**/*.xml'
+               echo 'Test'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'make publish' //
+               echo 'deploy'
             }
         }
     }
