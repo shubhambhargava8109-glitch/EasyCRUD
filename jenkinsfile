@@ -29,6 +29,37 @@ pipeline {
         }
     }
 }
+        stage('Terraform Init') {
+            steps {
+              sh '''
+              /usr/bin/terraform init
+        '''
+    }
+}
+
+        stage('Terraform Plan') {
+         steps {
+            sh '''
+            /usr/bin/terraform plan
+        '''
+    }
+}
+
+        stage('Terraform Apply') {
+         steps {
+          sh '''
+            /usr/bin/terraform apply -auto-approve
+        '''
+    }
+}
+
+        stage('Deploy Frontend to S3') {
+         steps {
+          sh '''
+            aws s3 sync frontend/ s3://my-bucket-jenkins81/frontend/ --delete
+        '''
+    }
+}
         stage('Deploy to S3') {
     steps {
         sh '''
