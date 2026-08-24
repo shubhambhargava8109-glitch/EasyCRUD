@@ -29,6 +29,13 @@ pipeline {
         }
     }
 }
+        stage('Deploy to S3') {
+    steps {
+        sh '''
+            aws s3 sync frontend/ s3://my-bucket-jenkins81/ --delete
+        '''
+    }
+}
          stage('Deploy') {
             steps {
                echo 'deploy'
